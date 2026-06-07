@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1920,height=1080,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>什么是 Coding Agent？尤其什么是 Codex</title>
 <!--
   deck_index.html — 多文件 slide deck 拼接器 · 双概览模式
@@ -19,21 +19,21 @@
 -->
 <script>
   window.DECK_MANIFEST = [
-    { file: "slides/01-cover.html", label: "封面" },
-    { file: "slides/02-why-now.html", label: "为什么现在要懂" },
-    { file: "slides/03-definition.html", label: "一句话定义" },
-    { file: "slides/04-loop.html", label: "Agent 闭环" },
-    { file: "slides/05-workflow.html", label: "它具体做什么" },
-    { file: "slides/06-codex.html", label: "Codex 是什么" },
-    { file: "slides/07-chatgpt-vs-codex.html", label: "Codex vs ChatGPT" },
-    { file: "slides/08-office-usecases.html", label: "白领场景" },
-    { file: "slides/09-task-writing.html", label: "会写任务比会写代码重要" },
-    { file: "slides/10-prompt-template.html", label: "Prompt 模板" },
-    { file: "slides/11-example.html", label: "一个办公室例子" },
-    { file: "slides/12-human-role.html", label: "人机分工" },
-    { file: "slides/13-safety.html", label: "安全边界" },
-    { file: "slides/14-roadmap.html", label: "一周试点" },
-    { file: "slides/15-takeaways.html", label: "总结" }
+    { file: "slides/01-cover.html", label: "封面", thumb: "thumbs/01-cover.jpg" },
+    { file: "slides/02-why-now.html", label: "为什么现在要懂", thumb: "thumbs/02-why-now.jpg" },
+    { file: "slides/03-definition.html", label: "一句话定义", thumb: "thumbs/03-definition.jpg" },
+    { file: "slides/04-loop.html", label: "Agent 闭环", thumb: "thumbs/04-loop.jpg" },
+    { file: "slides/05-workflow.html", label: "它具体做什么", thumb: "thumbs/05-workflow.jpg" },
+    { file: "slides/06-codex.html", label: "Codex 是什么", thumb: "thumbs/06-codex.jpg" },
+    { file: "slides/07-chatgpt-vs-codex.html", label: "Codex vs ChatGPT", thumb: "thumbs/07-chatgpt-vs-codex.jpg" },
+    { file: "slides/08-office-usecases.html", label: "白领场景", thumb: "thumbs/08-office-usecases.jpg" },
+    { file: "slides/09-task-writing.html", label: "会写任务比会写代码重要", thumb: "thumbs/09-task-writing.jpg" },
+    { file: "slides/10-prompt-template.html", label: "Prompt 模板", thumb: "thumbs/10-prompt-template.jpg" },
+    { file: "slides/11-example.html", label: "一个办公室例子", thumb: "thumbs/11-example.jpg" },
+    { file: "slides/12-human-role.html", label: "人机分工", thumb: "thumbs/12-human-role.jpg" },
+    { file: "slides/13-safety.html", label: "安全边界", thumb: "thumbs/13-safety.jpg" },
+    { file: "slides/14-roadmap.html", label: "一周试点", thumb: "thumbs/14-roadmap.jpg" },
+    { file: "slides/15-takeaways.html", label: "总结", thumb: "thumbs/15-takeaways.jpg" }
   ];
   window.DECK_WIDTH = 1920;
   window.DECK_HEIGHT = 1080;
@@ -123,6 +123,36 @@
   .nav-hint { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 999px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; font-size: 22px; opacity: 0; transition: opacity .2s; }
   .nav-zone.left .nav-hint { left: 20px; } .nav-zone.right .nav-hint { right: 20px; }
   .nav-zone:hover .nav-hint { opacity: 1; }
+  .mobile-rotate-tip { display: none; }
+
+  @media (max-width: 820px), (pointer: coarse) and (max-width: 1024px) {
+    html, body { width: 100%; height: 100dvh; overflow: hidden; background: #efece4; }
+    body[data-ov="grid"][data-mode="overview"] { background: #efece4; }
+    #ov-grid { perspective: none; justify-content: flex-start; align-items: flex-start; overflow-y: auto; overflow-x: hidden; padding: calc(62px + env(safe-area-inset-top)) 16px calc(92px + env(safe-area-inset-bottom)); }
+    body[data-grid] #ov-grid { overflow-y: auto; overflow-x: hidden; align-items: flex-start; padding: calc(62px + env(safe-area-inset-top)) 16px calc(92px + env(safe-area-inset-bottom)); }
+    .wall-wrap, body[data-grid="fit"] .wall-wrap { width: 100%; transform: none; }
+    .wall { width: 100% !important; transform: none !important; gap: 16px !important; }
+    #ov-grid .card { border-radius: 14px; box-shadow: 0 12px 30px rgba(40,34,24,0.18), 0 2px 8px rgba(40,34,24,0.10); }
+    #ov-grid .card:hover { transform: none; box-shadow: 0 12px 30px rgba(40,34,24,0.18), 0 2px 8px rgba(40,34,24,0.10); }
+    .card .thumb { width: 100%; height: 100%; transform: none !important; }
+    .card .thumb iframe { display: none; }
+    .card .num { left: 10px; bottom: 10px; font-size: 12px; padding: 6px 9px; border-radius: 999px; }
+    .overview-title { top: calc(18px + env(safe-area-inset-top)); font-size: 12px; letter-spacing: 0.12em; }
+    .start-btn { left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); width: auto; padding: 15px 18px; font-size: 16px; }
+    body[data-mode="present"] { background: #111; }
+    #stage { box-shadow: none; }
+    .overview-btn { top: calc(10px + env(safe-area-inset-top)); left: 10px; opacity: 0.82; padding: 7px 12px; }
+    .counter { right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); font-size: 12px; padding: 6px 10px; opacity: 0.82; }
+    .counter .label { display: none; }
+    .nav-zone { width: 28%; }
+    .nav-hint { display: none; }
+    .mobile-rotate-tip { position: fixed; left: 50%; bottom: calc(48px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 120; display: none; padding: 7px 11px; border-radius: 999px; background: rgba(0,0,0,0.58); color: rgba(255,255,255,0.9); font-size: 12px; letter-spacing: 0.03em; white-space: nowrap; pointer-events: none; }
+    body[data-mode="present"] .mobile-rotate-tip { display: block; }
+  }
+
+  @media (max-width: 820px) and (orientation: landscape) {
+    body[data-mode="present"] .mobile-rotate-tip { display: none; }
+  }
 
   @media print {
     @page { size: 1920px 1080px; margin: 0; }
@@ -156,6 +186,7 @@
   <div class="nav-zone left"  id="navL"><div class="nav-hint">‹</div></div>
   <div class="nav-zone right" id="navR"><div class="nav-hint">›</div></div>
   <div class="counter" id="counter">1 / 1</div>
+  <div class="mobile-rotate-tip">横屏观看更清晰 · 左右滑动翻页</div>
 </div>
 
 <div class="print-stack" id="printStack" style="display:none;"></div>
@@ -176,6 +207,17 @@
   const driftLayer = document.getElementById('driftLayer');
   const storageKey = 'deck-index-' + location.pathname;
   let current = 0;
+
+  function isMobileViewport() {
+    return matchMedia('(max-width: 820px), (pointer: coarse) and (max-width: 1024px)').matches;
+  }
+
+  function viewportBox() {
+    const vv = window.visualViewport;
+    const w = vv ? vv.width * (vv.scale || 1) : innerWidth;
+    const h = vv ? vv.height * (vv.scale || 1) : innerHeight;
+    return { w, h };
+  }
 
   stage.style.width = W + 'px'; stage.style.height = H + 'px';
   driftLayer.style.setProperty('--driftSec', DRIFT_SEC + 's');
@@ -198,9 +240,9 @@
     card.className = 'card'; card.dataset.idx = idx;
     const item = deck[idx];
     if (useImg && item.thumb) {
-      // 仅画廊用：预渲染缩略图，扛无限平铺的性能
+      // Image thumbnails are used on mobile and gallery mode for speed.
       const im = document.createElement('img');
-      im.className = 'thumb-img'; im.src = item.thumb; im.decoding = 'async';
+      im.className = 'thumb-img'; im.src = item.thumb; im.decoding = 'async'; im.loading = 'lazy';
       card.appendChild(im);
     } else {
       // 网格默认用：真实 HTML 子页面（清晰、所见即所得）
@@ -234,6 +276,29 @@
   const GRID_PAD = 74;  // #ov-grid scroll 顶部 padding，算动态 transform-origin 用
   function layoutWall() {
     const n = deck.length; if (!n) return;
+    if (isMobileViewport()) {
+      const gap = 16;
+      const cols = matchMedia('(orientation: landscape)').matches ? 2 : 1;
+      const vw = window.visualViewport ? window.visualViewport.width : innerWidth;
+      const cardW = Math.max(240, (vw - 32 - (cols - 1) * gap) / cols);
+      wall.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+      wall.style.gap = gap + 'px';
+      wall.style.width = '100%';
+      wall.style.transform = 'none';
+      wall.style.transformOrigin = 'center center';
+      document.body.setAttribute('data-grid', 'mobile');
+      wall.querySelectorAll('.card').forEach(card => {
+        const idx = Number(card.dataset.idx);
+        const item = deck[idx];
+        const thumb = card.querySelector('.thumb');
+        if (thumb && item && item.thumb && !thumb.querySelector('img')) {
+          thumb.innerHTML = '<img class="thumb-img" loading="lazy" decoding="async" src="' + item.thumb + '" alt="">';
+        }
+        if (thumb) thumb.style.transform = 'none';
+        card.style.width = cardW + 'px';
+      });
+      return;
+    }
     const vw = innerWidth, vh = innerHeight, gap = 26;
     const availW = vw * 0.86;                                   // 留 rotateZ 横向余量（强对角也不裁切）
     const target = 280;
@@ -311,17 +376,9 @@
 
   /* ════════ 演示 ════════ */
   function fit() {
-    // Minis/iOS WebView can report layout viewport (innerWidth) and visual viewport
-    // differently after set_viewport. For presentation screenshots, visualViewport
-    // width × scale matches the actual 1920×1080 capture size, avoiding tiny slides.
-    const vw = (window.visualViewport && window.visualViewport.width && window.visualViewport.scale)
-      ? window.visualViewport.width * window.visualViewport.scale
-      : innerWidth;
-    const vh = (window.visualViewport && window.visualViewport.height && window.visualViewport.scale)
-      ? window.visualViewport.height * window.visualViewport.scale
-      : innerHeight;
-    const s = Math.min(vw / W, vh / H);
-    stage.style.transform = 'translate(' + ((vw - W * s) / 2) + 'px, ' + ((vh - H * s) / 2) + 'px) scale(' + s + ')';
+    const box = viewportBox();
+    const s = Math.min(box.w / W, box.h / H);
+    stage.style.transform = 'translate(' + ((box.w - W * s) / 2) + 'px, ' + ((box.h - H * s) / 2) + 'px) scale(' + s + ')';
     stage.style.top = '0'; stage.style.left = '0';
   }
   function show(idx) {
@@ -355,6 +412,21 @@
   let rT;
   window.addEventListener('resize', () => { fit(); clearTimeout(rT); rT = setTimeout(buildOverview, 140); });
   document.getElementById('ov-grid').addEventListener('scroll', updateScrollOrigin, { passive: true });
+  let touchStartX = 0, touchStartY = 0;
+  document.getElementById('present-ui').addEventListener('touchstart', (e) => {
+    if (!e.changedTouches || !e.changedTouches.length) return;
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  document.getElementById('present-ui').addEventListener('touchend', (e) => {
+    if (document.body.getAttribute('data-mode') !== 'present') return;
+    if (!e.changedTouches || !e.changedTouches.length) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      if (dx < 0) next(); else prev();
+    }
+  }, { passive: true });
   window.addEventListener('hashchange', () => { const m = location.hash.match(/^#(\d+)$/); if (m) { current = parseInt(m[1], 10) - 1; setMode('present'); } });
 
   const hashMatch = location.hash.match(/^#(\d+)$/);
